@@ -16,6 +16,9 @@
 #define PRICE_GOLD 200
 #define PRICE_SILVER 150
 
+#define SUCCESS 1
+#define FAILURE 0
+
 
 typedef struct {
     int vip[VIP_SEATS];

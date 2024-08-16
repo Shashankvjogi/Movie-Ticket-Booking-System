@@ -1,4 +1,3 @@
-
 #include "movie.h"
 
 int initializeSeats(Screen *screens) {
@@ -17,7 +16,7 @@ int initializeSeats(Screen *screens) {
             screens[i].silver[j] = 0;
         }
     }
-    return 1;
+    return SUCCESS;
 }
 
 int printSeats(Screen *screen, int vip_size, int gold_size, int silver_size) {
@@ -36,20 +35,20 @@ int printSeats(Screen *screen, int vip_size, int gold_size, int silver_size) {
         printf("%d ", screen->silver[i]);
     }
     printf("\n");
-    return 1;
+    return SUCCESS;
 }
 
 
 int areSeatsAvailable(int *seats, int start, int num_seats, int total_seats) {
     if (start + num_seats > total_seats) {
-        return 0;
+        return FAILURE;
     }
     for (int i = start; i < start + num_seats; i++) {
         if (seats[i] != 0) {
-            return 0;
+            return FAILURE;
         }
     }
-    return 1;
+    return SUCCESS;
 }
 
 
@@ -57,32 +56,25 @@ int blockSeats(int *seats, int start, int num_seats) {
     for (int i = start; i < start + num_seats; i++) {
         seats[i] = 1;
     }
-    return 1;
+    return SUCCESS;
 }
-
-
-/*int unblockSeats(int *seats, int start, int num_seats) {
-    for (int i = start; i < start + num_seats; i++) {
-        seats[i] = 0;
-    }
-    return 1;
-}*/
 
 
 int confirmBooking() {
     char confirm;
-    printf("Confirm booking? (Y/N): ");
+    printf("CONFIRM BOOKING? (Y/N): ");
     scanf(" %c", &confirm);
+    printf("\n");
     return (confirm == 'Y' || confirm == 'y');
 }
 
 
 int handlePayment(int num_vip, int num_gold, int num_silver) {
     int total_amount = num_vip * PRICE_VIP + num_gold * PRICE_GOLD + num_silver * PRICE_SILVER;
-    printf("Processing payment...\n");
-    printf("Total amount: Rs %d\n", total_amount);
-    printf("Payment completed.\n");
-    return 1;
+    printf("Processing payment...\n\n");
+    printf("Total amount: Rs %d\n\n", total_amount);
+    printf("Payment completed.\n\n");
+    return SUCCESS;
 }
 
 
@@ -92,27 +84,31 @@ int displaySelectedSeats(int start, int num_seats) {
         printf("%d ", i);
     }
     printf("\n");
-    return 1;
+    return SUCCESS;
 }
 
 
 int printBookings(BookingSystem *booking_system) {
     if (booking_system->count == 0) {
-        printf("No bookings found.\n");
-        return 0;
+        printf("NO BOOKINGS FOUND.\n");
+        printf("\n");
+        return FAILURE;
     }
 
     printf("All Bookings:\n");
+    printf("\n");
     for (int i = 0; i < booking_system->count; i++) {
         Ticket t = booking_system->tickets[i];
-        printf("Booking #%d:\n", i + 1);
-        printf("Name: %s\n", t.name);
-        printf("Phone Number: %s\n", t.phone_num);
-        printf("Screen: %d\n", t.screen + 1);
-        printf("Category: %s\n", t.category == VIP ? "VIP" : (t.category == GOLD ? "GOLD" : "SILVER"));
-        printf("Seats: %d-%d\n", t.start_seat, t.start_seat + t.num_seats - 1);
+        printf("\n");
+        printf("BOOKING ID : %d\n", i + 1);
+        printf("NAME: %s\n", t.name);
+        printf("PHONE NUMBER: %s\n", t.phone_num);
+        printf("SCREEN: %d\n", t.screen + 1);
+        printf("CATEGORY: %s\n", t.category == VIP ? "VIP" : (t.category == GOLD ? "GOLD" : "SILVER"));
+        printf("SEATS: %d-%d\n", t.start_seat, t.start_seat + t.num_seats - 1);
+        printf("\n");
     }
-    return 1;
+    return SUCCESS;
 }
 
 int displayScreenStatus(Screen *screens) {
@@ -127,7 +123,7 @@ int displayScreenStatus(Screen *screens) {
 
         printSeats(&screens[i], vip_size, gold_size, silver_size);
     }
-    return 1;
+    return SUCCESS;
 }
 
 

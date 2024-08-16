@@ -4,8 +4,8 @@
 int main() {
     Screen screens[NUM_SCREENS];
     if (!initializeSeats(screens)) {
-        printf("Error initializing seats.\n");
-        return 1;
+        printf("ERROR INITIALIZING SEATS.\n");
+        return SUCCESS;
     }
 
     BookingSystem booking_system;
@@ -13,31 +13,36 @@ int main() {
 
     while (1) {
         if(booking_system.count>MAX_BOOKINGS-1){
-                            printf("Booking Limit Exceeded... :(");
-                            return 0;
-                        }
+            printf("BOOKING LIMIT EXCEEDED... :(");
+            return FAILURE;
+        }
         int choice;
 
         printf("Select an option:\n");
-        printf("1. Book Seats\n");
-        printf("2. View All Bookings\n");
-        printf("3. View Seat Availability\n");
-        printf("4. Exit\n");
+        printf("1. BOOK SEATS\n");
+        printf("--------------------------\n");
+        printf("2. VIEW ALL BOOKINGS\n");
+        printf("--------------------------\n");
+        printf("3. VIEW SEAT AVAILABILITY\n");
+        printf("--------------------------\n");
+        printf("4. EXIT\n");
+        printf("--------------------------\n");
         printf("Choice: ");
         scanf("%d", &choice);
 
         if (choice == 1) {
             Ticket t1;
 
-            printf("Enter Name: ");
+            printf("ENTER NAME: ");
             scanf("%s", t1.name);
 
-            printf("Enter Phone Number: ");
+            printf("ENTER PHONE NUMBER: ");
             scanf("%s", t1.phone_num);
+            printf("--------------------------\n");
 
     int vip_size, gold_size, silver_size;
         while(1){
-            printf("Select Screen (1, 2, or 3): ");
+            printf("SELECT SCREEN [1, 2, or 3]: ");
             scanf("%d", &t1.screen);
             t1.screen -=1;
 
@@ -48,7 +53,7 @@ int main() {
                 break;
             }
             else{
-                printf("Unable to select the screen, Please select valid screen number \n");
+                printf("UNABLE TO SELECT THE SCREEN, PLEASE SELECT VALID SCREEN NUMBER \n");
                 while (getchar() != '\n');
             }
         }
@@ -61,9 +66,9 @@ int main() {
                 int *selected_seats;
                 int selected_size;
                 while(1){
-                printf("Select seat category (1: VIP, 2: GOLD, 3: SILVER): ");
+                printf("SELECT SEAT CATEGORY (1: VIP, 2: GOLD, 3: SILVER): ");
                 scanf("%d", &t1.category);
-
+                printf("\n");
 
 
                 if (t1.category == VIP) {
@@ -80,26 +85,29 @@ int main() {
                     break;
                 }
                 else{
-                    printf("Invalid seat category, Please select the valid input\n");
+                    printf("INVALID SEAT CATEGORY, PLEASE ENTER VALID INPUT\n");
                     while(getchar()!='\n');
                 }
                 }
 
                 while(1){
-                    printf("Enter starting seat number (0 to %d): ", selected_size - 1);
-                scanf("%d", &t1.start_seat);
+                    printf("ENTER STARTING SEAT NUMBER (0 to %d): ", selected_size - 1);
+                    scanf("%d", &t1.start_seat);
+                    printf("\n");
                 if(t1.start_seat>=0 && t1.start_seat<=(selected_size - 1)){
                     printf("Starting Seats selected!!\n");
                     break;
                 }
                 else{
-                    printf("Invalid Seat selected, Please enter valid input\n");
+                    printf("INVALID SEAT SELECTED,PLEASE ENTER VALID INPUT\n");
                     while(getchar()!='\n');
                 }
                }
 
-                printf("Enter number of seats: ");
+                printf("ENTER NUMBER OF SEATS : ");
                 scanf("%d", &t1.num_seats);
+                printf("\n");
+
 
                 if (areSeatsAvailable(selected_seats, t1.start_seat, t1.num_seats, selected_size)) {
                     displaySelectedSeats(t1.start_seat, t1.num_seats);
@@ -108,14 +116,14 @@ int main() {
 
                         booking_system.tickets[booking_system.count++] = t1;
                         handlePayment(t1.category == VIP ? t1.num_seats : 0, t1.category == GOLD ? t1.num_seats : 0, t1.category == SILVER ? t1.num_seats : 0);
-                        printf("Booking confirmed.\n");
+                        printf("BOOKING CONFIRMED.\n\n");
                         break;
                     } else {
-                        printf("Booking cancelled.\n");
+                        printf("BOOKING CANCELLED.\n\n");
                         break;
                     }
                 } else {
-                    printf("Seats not available. Please choose a different range.\n");
+                    printf("SEATS NOT AVAILABLE, PLEASE CHOOSE A DIFFERENT RANGE.\n\n");
                 }
             }
 
@@ -125,10 +133,11 @@ int main() {
             displayScreenStatus(screens);
         }
         else if (choice == 4) {
-            printf("Exiting...\n");
+            printf("EXITING...\n");
             break;
         } else {
-            printf("Invalid choice. Please try again.\n");
+            printf("INVALID CHOICE. PLEASE TRY AGAIN.\n");
+            printf("\n");
         }
     }
 
