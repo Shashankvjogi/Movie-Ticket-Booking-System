@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1723790813 source:c:\users\user\desktop\ticket booking system\movie\main.c
+	"movie.h"
+
+1723790723 c:\users\user\desktop\ticket booking system\movie\movie.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1723787438 source:c:\users\user\desktop\ticket booking system\movie\movie_op.c
+	"movie.h"
+

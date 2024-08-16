@@ -34,32 +34,43 @@ int main() {
             printf("Enter Phone Number: ");
             scanf("%s", t1.phone_num);
 
+    int vip_size, gold_size, silver_size;
+        while(1){
             printf("Select Screen (1, 2, or 3): ");
             scanf("%d", &t1.screen);
-            t1.screen -= 1;
 
-            int vip_size, gold_size, silver_size;
 
-            if (t1.screen == 0) {
+
+            if (t1.screen == 1) {
                 vip_size = VIP_SEATS;
                 gold_size = GOLD_SEATS;
                 silver_size = SILVER_SEATS;
-            } else if (t1.screen == 1) {
+                break;
+
+            } else if (t1.screen == 2) {
                 vip_size = VIP_SEATS;
                 gold_size = GOLD_SEATS;
                 silver_size = SILVER_SEATS;
-            } else {
+                break;
+
+            } else if(t1.screen == 3){
                 vip_size = VIP_SEATS;
                 gold_size = GOLD_SEATS;
                 silver_size = SILVER_SEATS;
+                break;
             }
+            else{
+                printf("Unable to select the screen, Please select valid screen number \n");
+            }
+        }
+
 
             Screen *current_screen = &screens[t1.screen];
 
             while (1) {
                 printSeats(current_screen, vip_size, gold_size, silver_size);
 
-                printf("Select seat category (0: VIP, 1: GOLD, 2: SILVER): ");
+                printf("Select seat category (1: VIP, 2: GOLD, 3: SILVER): ");
                 scanf("%d", &t1.category);
 
                 int *selected_seats;

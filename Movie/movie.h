@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define VIP 0
-#define GOLD 1
-#define SILVER 2
+#define VIP 1
+#define GOLD 2
+#define SILVER 3
 
 #define NUM_SCREENS 3
 #define VIP_SEATS 10

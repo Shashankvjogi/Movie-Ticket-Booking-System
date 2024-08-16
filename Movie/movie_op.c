@@ -21,16 +21,18 @@ int initializeSeats(Screen *screens) {
 }
 
 int printSeats(Screen *screen, int vip_size, int gold_size, int silver_size) {
-    printf("VIP Seats: ");
+    printf("VIP Seats   :   ");
     for (int i = 0; i < vip_size; i++) {
         printf("%d ", screen->vip[i]);
     }
-    printf("\nGOLD Seats: ");
+    printf("\nGOLD Seats  :   ");
     for (int i = 0; i < gold_size; i++) {
+            if(i==10) printf("\n\t\t");
         printf("%d ", screen->gold[i]);
     }
-    printf("\nSILVER Seats: ");
+    printf("\nSILVER Seats:   ");
     for (int i = 0; i < silver_size; i++) {
+         if(i==10 || i==20) printf("\n\t\t");
         printf("%d ", screen->silver[i]);
     }
     printf("\n");
