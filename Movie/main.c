@@ -38,22 +38,9 @@ int main() {
         while(1){
             printf("Select Screen (1, 2, or 3): ");
             scanf("%d", &t1.screen);
+            t1.screen -=1;
 
-
-
-            if (t1.screen == 1) {
-                vip_size = VIP_SEATS;
-                gold_size = GOLD_SEATS;
-                silver_size = SILVER_SEATS;
-                break;
-
-            } else if (t1.screen == 2) {
-                vip_size = VIP_SEATS;
-                gold_size = GOLD_SEATS;
-                silver_size = SILVER_SEATS;
-                break;
-
-            } else if(t1.screen == 3){
+            if (t1.screen == 0 || t1.screen == 1 || t1.screen == 2 ) {
                 vip_size = VIP_SEATS;
                 gold_size = GOLD_SEATS;
                 silver_size = SILVER_SEATS;
@@ -61,6 +48,7 @@ int main() {
             }
             else{
                 printf("Unable to select the screen, Please select valid screen number \n");
+                while (getchar() != '\n');
             }
         }
 
@@ -69,26 +57,45 @@ int main() {
 
             while (1) {
                 printSeats(current_screen, vip_size, gold_size, silver_size);
-
+                int *selected_seats;
+                int selected_size;
+                while(1){
                 printf("Select seat category (1: VIP, 2: GOLD, 3: SILVER): ");
                 scanf("%d", &t1.category);
 
-                int *selected_seats;
-                int selected_size;
+
 
                 if (t1.category == VIP) {
                     selected_seats = current_screen->vip;
                     selected_size = vip_size;
+                    break;
                 } else if (t1.category == GOLD) {
                     selected_seats = current_screen->gold;
                     selected_size = gold_size;
+                    break;
                 } else if (t1.category == SILVER) {
                     selected_seats = current_screen->silver;
                     selected_size = silver_size;
+                    break;
                 }
-
-                printf("Enter starting seat number (0 to %d): ", selected_size - 1);
+                else{
+                    printf("Invalid seat category, Please select the valid input\n");
+                    while(getchar()!='\n');
+                }
+                }
+                //(isdigit(t1.start_seat))
+                while(1){
+                    printf("Enter starting seat number (0 to %d): ", selected_size - 1);
                 scanf("%d", &t1.start_seat);
+                if(t1.start_seat>=0 && t1.start_seat<=(selected_size - 1)){
+                    printf("Starting Seats selected!!\n");
+                    break;
+                }
+                else{
+                    printf("Invalid Seat selected, Please enter valid input\n");
+                    while(getchar()!='\n');
+                }
+               }
 
                 printf("Enter number of seats: ");
                 scanf("%d", &t1.num_seats);
