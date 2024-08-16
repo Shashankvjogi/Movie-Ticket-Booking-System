@@ -12,6 +12,10 @@ int main() {
     booking_system.count = 0;
 
     while (1) {
+        if(booking_system.count>MAX_BOOKINGS-1){
+                            printf("Booking Limit Exceeded... :(");
+                            return 0;
+                        }
         int choice;
 
         printf("Select an option:\n");
@@ -22,10 +26,7 @@ int main() {
         printf("Choice: ");
         scanf("%d", &choice);
 
-        if (choice == 4) {
-            printf("Exiting...\n");
-            break;
-        } else if (choice == 1) {
+        if (choice == 1) {
             Ticket t1;
 
             printf("Enter Name: ");
@@ -83,7 +84,7 @@ int main() {
                     while(getchar()!='\n');
                 }
                 }
-                //(isdigit(t1.start_seat))
+
                 while(1){
                     printf("Enter starting seat number (0 to %d): ", selected_size - 1);
                 scanf("%d", &t1.start_seat);
@@ -104,12 +105,14 @@ int main() {
                     displaySelectedSeats(t1.start_seat, t1.num_seats);
                     if (confirmBooking()) {
                         blockSeats(selected_seats, t1.start_seat, t1.num_seats);
+
                         booking_system.tickets[booking_system.count++] = t1;
                         handlePayment(t1.category == VIP ? t1.num_seats : 0, t1.category == GOLD ? t1.num_seats : 0, t1.category == SILVER ? t1.num_seats : 0);
                         printf("Booking confirmed.\n");
                         break;
                     } else {
                         printf("Booking cancelled.\n");
+                        break;
                     }
                 } else {
                     printf("Seats not available. Please choose a different range.\n");
@@ -120,6 +123,10 @@ int main() {
             printBookings(&booking_system);
         } else if (choice == 3) {
             displayScreenStatus(screens);
+        }
+        else if (choice == 4) {
+            printf("Exiting...\n");
+            break;
         } else {
             printf("Invalid choice. Please try again.\n");
         }

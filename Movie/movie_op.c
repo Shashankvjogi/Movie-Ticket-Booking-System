@@ -124,19 +124,6 @@ int displayScreenStatus(Screen *screens) {
         gold_size = GOLD_SEATS;
         silver_size = SILVER_SEATS;
 
-       /* if (i == 0) {
-            vip_size = VIP_SEATS;
-            gold_size = GOLD_SEATS;
-            silver_size = SILVER_SEATS;
-        } else if (i == 1) {
-            vip_size = VIP_SEATS;
-            gold_size = GOLD_SEATS;
-            silver_size = SILVER_SEATS;
-        } else {
-            vip_size = VIP_SEATS;
-            gold_size = GOLD_SEATS;
-            silver_size = SILVER_SEATS;
-        }*/
 
         printSeats(&screens[i], vip_size, gold_size, silver_size);
     }

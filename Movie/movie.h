@@ -1,7 +1,5 @@
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #define VIP 1
 #define GOLD 2
@@ -12,7 +10,7 @@
 #define GOLD_SEATS 20
 #define SILVER_SEATS 30
 
-#define MAX_BOOKINGS 60
+#define MAX_BOOKINGS 180
 
 #define PRICE_VIP 300
 #define PRICE_GOLD 200
